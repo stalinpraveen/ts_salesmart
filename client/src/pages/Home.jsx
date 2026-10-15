@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Car,
@@ -8,13 +9,16 @@ import {
   Phone,
   MapPin,
   ArrowRight,
+  ArrowUpRight,
+  Calendar,
   Handshake,
   Users,
   ShieldCheck,
-  CheckCircle2,
   Clock,
   Compass,
   MessageSquare,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react'
 import QuickSearch from '../features/vehicles/QuickSearch'
 import VehicleGrid from '../features/vehicles/VehicleGrid'
@@ -22,41 +26,11 @@ import { ASSETS, BUSINESS } from '../utils/constants'
 import { usePageTitle } from '../hooks/usePageTitle'
 
 const CATEGORIES = [
-  {
-    label: 'Cars',
-    desc: 'Sedans & Hatchbacks',
-    icon: Car,
-    to: '/vehicles?type=car',
-    badge: 'Popular',
-  },
-  {
-    label: 'Vans',
-    desc: 'Family & Commercial Work',
-    icon: Bus,
-    to: '/vehicles?type=van',
-    badge: 'Spacious',
-  },
-  {
-    label: 'SUVs & Jeeps',
-    desc: 'Crossovers & All-Terrain',
-    icon: Mountain,
-    to: '/vehicles?type=suv',
-    badge: 'Premium',
-  },
-  {
-    label: 'New Arrivals',
-    desc: 'Recently Listed Stock',
-    icon: Sparkles,
-    to: '/vehicles?sort=newest',
-    badge: 'Latest',
-  },
-  {
-    label: 'Pre-Owned',
-    desc: 'Inspected Used Vehicles',
-    icon: BadgeCheck,
-    to: '/vehicles?condition=used',
-    badge: 'Verified',
-  },
+  { label: 'Cars', desc: 'Sedans & Hatchbacks', icon: Car, to: '/vehicles?type=car', badge: 'Popular' },
+  { label: 'Vans', desc: 'Family & Commercial Work', icon: Bus, to: '/vehicles?type=van', badge: 'Spacious' },
+  { label: 'SUVs & Jeeps', desc: 'Crossovers & All-Terrain', icon: Mountain, to: '/vehicles?type=suv', badge: 'Premium' },
+  { label: 'New Arrivals', desc: 'Recently Listed Stock', icon: Sparkles, to: '/vehicles?sort=newest', badge: 'Latest' },
+  { label: 'Pre-Owned', desc: 'Inspected Used Vehicles', icon: BadgeCheck, to: '/vehicles?condition=used', badge: 'Verified' },
 ]
 
 const SERVICES = [
@@ -82,117 +56,149 @@ const SERVICES = [
   },
 ]
 
+const BRANDS = [
+  { name: 'BMW', link: '/vehicles?brand=BMW', color: 'text-neutral-900', font: 'font-display font-black tracking-widest' },
+  { name: 'Mercedes-Benz', link: '/vehicles?brand=Mercedes-Benz', color: 'text-neutral-800', font: 'font-sans font-bold tracking-tight' },
+  { name: 'Audi', link: '/vehicles?brand=Audi', color: 'text-neutral-900', font: 'font-sans font-bold tracking-wide' },
+  { name: 'TOYOTA', link: '/vehicles?brand=Toyota', color: 'text-brand font-black', font: 'font-display tracking-widest font-black' },
+  { name: 'LEXUS', link: '/vehicles?brand=Lexus', color: 'text-neutral-900', font: 'font-display font-black tracking-widest' },
+  { name: 'SUZUKI', link: '/vehicles?brand=Suzuki', color: 'text-neutral-900', font: 'font-display font-bold tracking-wider' },
+  { name: 'NISSAN', link: '/vehicles?brand=Nissan', color: 'text-neutral-900', font: 'font-display font-extrabold tracking-wider' },
+]
+
 export default function Home() {
-  usePageTitle('TS SALES MART — Drive Your Dreams | Quality Cars & Vans in Sri Lanka')
+  usePageTitle('TS SALES MART — Drive Your Dream Car | Official Dealership Sri Lanka')
+  const [brandOffset, setBrandOffset] = useState(0)
+
+  const nextBrand = () => setBrandOffset((prev) => (prev + 1) % BRANDS.length)
+  const prevBrand = () => setBrandOffset((prev) => (prev - 1 + BRANDS.length) % BRANDS.length)
 
   return (
     <>
       {/* ========================================================= */}
-      {/* 1. HERO SECTION                                           */}
+      {/* 1. CINEMATIC HERO SECTION (Accurately Matching Reference) */}
       {/* ========================================================= */}
-      <section className="relative overflow-hidden bg-[#09090b] text-white pt-10 pb-28 lg:pt-16 lg:pb-36 border-b border-neutral-800">
+      <section className="relative overflow-hidden bg-[#09090b] text-white pt-12 pb-28 lg:pt-20 lg:pb-36 border-b border-white/5">
         {/* Subtle Ambient Red Glow */}
         <div
-          className="absolute -top-40 right-0 w-[550px] h-[550px] rounded-full bg-brand/20 blur-[130px] pointer-events-none"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute top-1/2 left-0 w-[420px] h-[420px] rounded-full bg-red-950/20 blur-[120px] pointer-events-none"
+          className="absolute -top-40 right-10 w-[600px] h-[600px] rounded-full bg-brand/15 blur-[140px] pointer-events-none"
           aria-hidden="true"
         />
 
-        <div className="container-page relative z-10 grid items-center gap-12 lg:grid-cols-12">
-          {/* Left Hero Headline & Content */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-semibold text-gray-300 backdrop-blur-md">
-              <span className="flex h-2 w-2 rounded-full bg-brand animate-ping" />
-              <span>TS SALES MART · Uduvil, Chunnakam · உங்களின் கனவு வாகனங்களுக்கு</span>
+        <div className="container-page relative z-10 grid items-center gap-10 lg:grid-cols-12">
+          {/* Left Hero Content */}
+          <div className="lg:col-span-6 space-y-6">
+            {/* Red Dash Eyebrow from reference */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-7 h-[3px] bg-brand inline-block rounded-full" />
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400">
+                PREMIUM CAR DEALERSHIP
+              </span>
             </div>
 
-            <div className="space-y-2">
-              <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.92] tracking-tight text-white">
-                Find Your Dream Car. <br />
-                <span className="bg-gradient-to-r from-red-500 via-rose-500 to-red-600 bg-clip-text text-transparent">
-                  Drive Your Future.
-                </span>
+            {/* Massive Bold Headline: DRIVE YOUR DREAM CAR */}
+            <div className="space-y-1">
+              <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white leading-[0.92]">
+                DRIVE YOUR <br />
+                <span className="text-brand">DREAM</span> CAR
               </h1>
-              <p className="text-sm sm:text-base font-semibold text-gray-400 tracking-wider">
-                Drive Your Dreams · உங்களின் கனவு வாகனங்களுக்கு
+              <p className="text-xs font-semibold text-gray-400 tracking-widest uppercase pt-1">
+                TS SALES MART · உங்களின் கனவு வாகனங்களுக்கு
               </p>
             </div>
 
-            <p className="max-w-xl text-base sm:text-lg text-gray-300 leading-relaxed font-normal">
-              Explore quality cars and vans with TS SALES MART. Your next journey starts here. Inspected Japanese models, transparent pricing in Sri Lankan Rupees, and trusted vehicle trade options.
+            {/* Supporting Text matching reference */}
+            <p className="max-w-lg text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+              Explore our premium collection of vehicles and find the perfect car that matches your lifestyle.
             </p>
 
-            {/* Hero CTAs */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
+            {/* CTA Buttons: View Inventory ↗ & Book a Test Drive 📅 */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 to="/vehicles"
-                className="btn-primary !px-8 !py-3.5 text-sm font-bold shadow-xl shadow-red-950/40"
+                className="btn-primary !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl shadow-xl shadow-red-950/40"
               >
-                Explore Vehicles <ArrowRight size={17} />
+                <span>View Inventory</span>
+                <ArrowUpRight size={17} />
               </Link>
               <Link
                 to="/contact"
-                className="btn-outline !px-7 !py-3.5 text-sm font-semibold"
+                className="btn-outline !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl"
               >
-                Contact Our Team
+                <span>Book a Test Drive</span>
+                <Calendar size={16} />
               </Link>
-            </div>
-
-            {/* Key Value Guarantee Points */}
-            <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-gray-400">
-              <span className="flex items-center gap-1.5 font-medium">
-                <CheckCircle2 size={14} className="text-brand shrink-0" /> Inspected Quality
-              </span>
-              <span className="flex items-center gap-1.5 font-medium">
-                <CheckCircle2 size={14} className="text-brand shrink-0" /> Transparent LKR Pricing
-              </span>
-              <span className="flex items-center gap-1.5 font-medium">
-                <CheckCircle2 size={14} className="text-brand shrink-0" /> Chunnakam Physical Showroom
-              </span>
             </div>
           </div>
 
-          {/* Right Hero Vehicle Image */}
-          <div className="lg:col-span-5">
-            <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-neutral-900 shadow-2xl shadow-black/80 ring-1 ring-white/10 group">
+          {/* Right Hero Vehicle Image: Realistic Black Car in Glass Showroom */}
+          <div className="lg:col-span-6">
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black group">
               <img
-                src={ASSETS.hero}
-                alt="TS SALES MART Automobile Showroom"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src={ASSETS.heroLuxury}
+                alt="TS SALES MART Luxury Showroom"
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20" />
-              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-white">
-                <div>
-                  <p className="text-xs uppercase font-extrabold tracking-widest text-brand">Showroom Selection</p>
-                  <p className="text-sm font-bold text-gray-200">New &amp; Pre-Owned Cars &amp; Vans</p>
-                </div>
-                <Link
-                  to="/vehicles"
-                  className="rounded-xl bg-white/20 backdrop-blur-md px-3.5 py-1.5 text-xs font-bold hover:bg-white hover:text-black transition"
-                >
-                  Browse →
-                </Link>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#09090b]/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#09090b]/40 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
       </section>
 
       {/* ========================================================= */}
-      {/* 2. VEHICLE SEARCH PANEL                                    */}
+      {/* 2. FLOATING SEARCH CONSOLE (Matching Reference Design)     */}
       {/* ========================================================= */}
       <div className="container-page">
         <QuickSearch />
       </div>
 
       {/* ========================================================= */}
-      {/* 3. VEHICLE CATEGORIES                                     */}
+      {/* 3. BRAND SHOWCASE CAROUSEL (White Capsule from Reference)  */}
       {/* ========================================================= */}
-      <section className="container-page py-20" aria-labelledby="cat-h">
+      <section className="container-page pt-10 pb-6">
+        <div className="rounded-full bg-white shadow-xl shadow-black/5 py-4 px-6 sm:px-10 border border-neutral-200/80 max-w-5xl mx-auto flex items-center justify-between gap-4">
+          <button
+            type="button"
+            onClick={prevBrand}
+            aria-label="Previous brand"
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-brand hover:text-white transition cursor-pointer"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <div className="flex items-center justify-around gap-6 sm:gap-10 w-full overflow-hidden">
+            {BRANDS.map((_, i) => {
+              const activeIndex = (i + brandOffset) % BRANDS.length
+              const item = BRANDS[activeIndex]
+              return (
+                <Link
+                  key={item.name + i}
+                  to={item.link}
+                  className={`text-xs sm:text-sm md:text-base font-bold transition hover:opacity-75 ${item.color} ${item.font} shrink-0`}
+                >
+                  {item.name}
+                </Link>
+              )
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={nextBrand}
+            aria-label="Next brand"
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-brand hover:text-white transition cursor-pointer"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
+      </section>
+
+      {/* ========================================================= */}
+      {/* 4. VEHICLE CATEGORIES                                     */}
+      {/* ========================================================= */}
+      <section className="container-page py-16" aria-labelledby="cat-h">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
             <p className="eyebrow">Explore Inventory</p>
@@ -240,7 +246,7 @@ export default function Home() {
       </section>
 
       {/* ========================================================= */}
-      {/* 4. FEATURED VEHICLES SHOWCASE                             */}
+      {/* 5. FEATURED VEHICLES SHOWCASE                             */}
       {/* ========================================================= */}
       <section className="bg-neutral-100/70 py-20 border-y border-neutral-200/60" aria-labelledby="feat-h">
         <div className="container-page">
@@ -265,7 +271,7 @@ export default function Home() {
       </section>
 
       {/* ========================================================= */}
-      {/* 5. NEW ARRIVALS                                           */}
+      {/* 6. NEW ARRIVALS                                           */}
       {/* ========================================================= */}
       <section className="container-page py-20" aria-labelledby="new-h">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
@@ -285,108 +291,6 @@ export default function Home() {
           params={{ sort: 'newest', limit: 3 }}
           emptyText="New vehicle arrivals will appear here once listings are added."
         />
-      </section>
-
-      {/* ========================================================= */}
-      {/* 6. PROMOTIONAL SHOWCASE BANNER                            */}
-      {/* ========================================================= */}
-      <section className="container-page pb-16">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-neutral-950 via-[#121216] to-neutral-950 p-8 sm:p-14 text-white border border-neutral-800 shadow-2xl">
-          <div className="grid gap-10 lg:grid-cols-12 items-center">
-            {/* Left Narrative */}
-            <div className="relative z-10 lg:col-span-7 space-y-4">
-              <span className="badge bg-brand text-white font-bold tracking-wider uppercase text-xs">
-                Official Business Showcase · சிறப்பு விற்பனை
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-wide leading-tight">
-                உங்களின் கனவு வாகனங்களுக்கு <br />
-                <span className="text-brand">Drive Your Dreams</span>
-              </h2>
-              <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
-                Looking for leading Japanese models like the <strong>Toyota Raize</strong>, <strong>Suzuki Wagon R Custom Z</strong>, <strong>Toyota Hilux Rocco</strong>, or <strong>Toyota HiAce Highroof</strong>? Explore our verified stock or talk directly with our sales team.
-              </p>
-              <div className="pt-2 flex flex-wrap items-center gap-3">
-                <Link to="/vehicles?brand=Toyota" className="btn-primary !py-2.5 text-xs sm:text-sm">
-                  Toyota Vehicles
-                </Link>
-                <Link to="/vehicles?brand=Suzuki" className="btn-outline !py-2.5 text-xs sm:text-sm">
-                  Suzuki Vehicles
-                </Link>
-                <Link to="/vehicles?type=van" className="btn-outline !py-2.5 text-xs sm:text-sm">
-                  Passenger &amp; Commercial Vans
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Showcase: Featured Model Spotlight Cards */}
-            <div className="relative z-10 lg:col-span-5 grid gap-3 sm:grid-cols-2">
-              <Link
-                to="/vehicles?q=Raize"
-                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-brand hover:bg-white/10"
-              >
-                <div className="flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-brand">
-                  <span className="uppercase tracking-wider">Toyota</span>
-                  <span className="text-[10px] rounded-md bg-white/10 px-2 py-0.5 text-gray-300">Compact SUV</span>
-                </div>
-                <h4 className="mt-2 text-base font-extrabold text-white group-hover:text-brand transition">Toyota Raize</h4>
-                <p className="mt-1 text-xs text-gray-400">Direct Japanese Stock · Unregistered</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand">
-                  Explore Stock <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-
-              <Link
-                to="/vehicles?q=Wagon+R"
-                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-brand hover:bg-white/10"
-              >
-                <div className="flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-brand">
-                  <span className="uppercase tracking-wider">Suzuki</span>
-                  <span className="text-[10px] rounded-md bg-white/10 px-2 py-0.5 text-gray-300">Hybrid</span>
-                </div>
-                <h4 className="mt-2 text-base font-extrabold text-white group-hover:text-brand transition">Wagon R Custom Z</h4>
-                <p className="mt-1 text-xs text-gray-400">Fuel-Efficient City Hybrid</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand">
-                  Explore Stock <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-
-              <Link
-                to="/vehicles?q=Hilux"
-                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-brand hover:bg-white/10"
-              >
-                <div className="flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-brand">
-                  <span className="uppercase tracking-wider">Toyota</span>
-                  <span className="text-[10px] rounded-md bg-white/10 px-2 py-0.5 text-gray-300">4x4 Pickup</span>
-                </div>
-                <h4 className="mt-2 text-base font-extrabold text-white group-hover:text-brand transition">Hilux Rocco</h4>
-                <p className="mt-1 text-xs text-gray-400">All-Terrain Double Cab</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand">
-                  Explore Stock <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-
-              <Link
-                to="/vehicles?type=van"
-                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-brand hover:bg-white/10"
-              >
-                <div className="flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-brand">
-                  <span className="uppercase tracking-wider">Toyota</span>
-                  <span className="text-[10px] rounded-md bg-white/10 px-2 py-0.5 text-gray-300">Passenger & Cargo</span>
-                </div>
-                <h4 className="mt-2 text-base font-extrabold text-white group-hover:text-brand transition">HiAce Highroof</h4>
-                <p className="mt-1 text-xs text-gray-400">Spacious Commercial Van</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand">
-                  Explore Stock <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            </div>
-          </div>
-
-          <div
-            className="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-brand/20 blur-3xl pointer-events-none"
-            aria-hidden="true"
-          />
-        </div>
       </section>
 
       {/* ========================================================= */}

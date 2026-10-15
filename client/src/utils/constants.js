@@ -27,4 +27,5 @@ export const ASSETS = {
   poster1: '/assets/ts-sales-mart-poster-1.jpg',
   poster2: '/assets/ts-sales-mart-poster-2.jpg',
   hero: '/assets/ts-sales-mart-hero.jpg',
+  heroLuxury: '/assets/ts-sales-mart-hero-luxury.jpg',
 }
