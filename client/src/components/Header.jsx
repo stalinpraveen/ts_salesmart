@@ -154,8 +154,8 @@ export default function Header() {
             )}
           </Link>
 
-          <Link to="/contact" className="btn-primary ml-1 hidden !py-2.5 !px-4 md:inline-flex text-xs">
-            Sell or Enquire
+          <Link to="/vehicles" className="btn-primary ml-1 hidden !py-2.5 !px-5 md:inline-flex text-xs font-bold">
+            Explore Vehicles
           </Link>
 
           <button
@@ -213,8 +213,8 @@ export default function Header() {
               <span className="text-xs text-neutral-400">›</span>
             </Link>
             <div className="pt-2">
-              <Link to="/contact" onClick={() => setOpen(false)} className="btn-primary w-full text-center">
-                Sell or Enquire
+              <Link to="/vehicles" onClick={() => setOpen(false)} className="btn-primary w-full text-center">
+                Explore Vehicles
               </Link>
             </div>
           </div>

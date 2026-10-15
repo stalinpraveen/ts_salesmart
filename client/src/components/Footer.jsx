@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Phone, MapPin, Clock, MessageSquare, Heart, Shield } from 'lucide-react'
+import { Phone, MapPin, Clock, MessageSquare, Heart } from 'lucide-react'
 import { ASSETS, BUSINESS, NAV_LINKS } from '../utils/constants'
 
 const YEAR = new Date().getFullYear()

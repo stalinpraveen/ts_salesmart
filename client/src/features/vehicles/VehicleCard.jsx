@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Heart, Gauge, Fuel, Settings2, ArrowRight, Sparkles } from 'lucide-react'
+import { Heart, Gauge, Fuel, Settings2, ArrowRight, Sparkles, MapPin } from 'lucide-react'
 import { formatLKR, formatKm } from '../../utils/format'
 import { useFavorites } from '../favorites/FavoritesContext'
 
@@ -79,10 +79,18 @@ export default function VehicleCard({ vehicle }) {
             </span>
           </div>
 
-          {/* Price */}
-          <p className="mt-2.5 font-display text-2xl font-black text-brand tracking-tight">
-            {formatLKR(vehicle.price)}
-          </p>
+          {/* Price & Location */}
+          <div className="mt-2.5 flex items-baseline justify-between gap-2">
+            <p className="font-display text-2xl font-black text-brand tracking-tight">
+              {formatLKR(vehicle.price)}
+            </p>
+            {vehicle.location && (
+              <span className="flex items-center gap-1 text-[11px] font-semibold text-neutral-500 truncate" title={vehicle.location}>
+                <MapPin size={11} className="text-brand shrink-0" />
+                <span className="truncate">{vehicle.location}</span>
+              </span>
+            )}
+          </div>
 
           {/* Specifications Pills */}
           <ul className="mt-4 grid grid-cols-3 gap-1.5 border-t border-neutral-100 pt-3 text-[11px] font-medium text-neutral-600">
