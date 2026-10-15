@@ -219,9 +219,6 @@ export function About() {
               A Trusted Partner for Everyday &amp; Commercial Vehicles
             </h2>
             <p className="text-sm sm:text-base text-neutral-700 leading-relaxed">
-              Situated in the automotive hub of Uduvil along Ampalavanar Road in Chunnakam, <strong>TS SALES MART</strong> has grown to become a benchmark for transparent vehicle sales in the Northern Province and across Sri Lanka.
-            </p>
-            <p className="text-sm sm:text-base text-neutral-700 leading-relaxed">
               Whether you are looking for brand new unregistered Japanese vehicles or verified pre-owned automobiles, our team curates popular models such as the <strong>Toyota Raize</strong>, <strong>Suzuki Wagon R Custom Z</strong>, <strong>Toyota Hilux Rocco</strong>, and versatile passenger &amp; cargo vans including the <strong>Toyota HiAce</strong> and <strong>Toyota Roomy</strong>.
             </p>
 
