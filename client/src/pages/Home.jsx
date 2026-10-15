@@ -214,12 +214,14 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {CATEGORIES.map(({ label, desc, icon: Icon, to, badge }) => (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 items-stretch">
+          {CATEGORIES.map(({ label, desc, icon: Icon, to, badge }, idx) => (
             <Link
               key={label}
               to={to}
-              className="group flex flex-col justify-between rounded-3xl border border-neutral-200/90 bg-white p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:shadow-xl hover:shadow-black/5"
+              className={`group flex flex-col justify-between rounded-3xl border border-neutral-200/90 bg-white p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:shadow-xl hover:shadow-black/5 h-full ${
+                idx === 4 ? 'col-span-2 sm:col-span-1' : ''
+              }`}
             >
               <div>
                 <div className="flex items-center justify-between">
@@ -308,16 +310,16 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
             {SERVICES.map(({ icon: Icon, title, text }) => (
               <div
                 key={title}
-                className="rounded-3xl border border-white/10 bg-white/5 p-7 transition-all duration-300 hover:border-brand hover:bg-white/[0.08] hover:-translate-y-1"
+                className="flex flex-col justify-start rounded-3xl border border-white/10 bg-white/5 p-7 transition-all duration-300 hover:border-brand hover:bg-white/[0.08] hover:-translate-y-1 h-full"
               >
-                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand/10 border border-brand/20 text-brand">
+                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand/10 border border-brand/20 text-brand shrink-0">
                   <Icon size={24} />
                 </div>
-                <h3 className="mt-5 text-base font-bold text-white">{title}</h3>
+                <h3 className="mt-5 text-base font-bold text-white leading-snug">{title}</h3>
                 <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-relaxed font-normal">{text}</p>
               </div>
             ))}

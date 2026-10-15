@@ -80,7 +80,7 @@ export default function QuickSearch() {
         </div>
 
         {/* Inputs Row Matching Screenshot */}
-        <form onSubmit={submit} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-12 items-end">
+        <form onSubmit={submit} className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-12 items-end">
           {/* Make Column */}
           <div className="lg:col-span-3">
             <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-1.5">
@@ -89,7 +89,7 @@ export default function QuickSearch() {
             <select
               value={f.brand}
               onChange={set('brand')}
-              className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-3 text-xs font-semibold text-white focus:border-brand focus:outline-none transition"
+              className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-xs font-semibold text-white focus:border-brand focus:outline-none transition appearance-none cursor-pointer"
             >
               <option value="" className="bg-[#121316] text-white">Select Make</option>
               {POPULAR_MAKES.map((m) => (
@@ -108,7 +108,7 @@ export default function QuickSearch() {
               placeholder="Select Model"
               value={f.model}
               onChange={set('model')}
-              className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-3 text-xs font-semibold text-white placeholder:text-gray-500 focus:border-brand focus:outline-none transition"
+              className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 text-xs font-semibold text-white placeholder:text-gray-500 focus:border-brand focus:outline-none transition"
             />
           </div>
 
@@ -121,18 +121,18 @@ export default function QuickSearch() {
               <select
                 value={f.minYear}
                 onChange={set('minYear')}
-                className="w-1/2 rounded-xl border border-white/15 bg-white/5 px-2.5 py-3 text-xs font-semibold text-white focus:border-brand focus:outline-none transition"
+                className="h-12 w-1/2 rounded-xl border border-white/15 bg-white/5 px-2.5 text-xs font-semibold text-white focus:border-brand focus:outline-none transition appearance-none cursor-pointer"
               >
                 <option value="" className="bg-[#121316] text-white">Min</option>
                 {YEARS.map((y) => (
                   <option key={y} value={y} className="bg-[#121316] text-white">{y}</option>
                 ))}
               </select>
-              <span className="text-gray-500 text-xs">-</span>
+              <span className="text-gray-500 text-xs shrink-0">-</span>
               <select
                 value={f.maxYear}
                 onChange={set('maxYear')}
-                className="w-1/2 rounded-xl border border-white/15 bg-white/5 px-2.5 py-3 text-xs font-semibold text-white focus:border-brand focus:outline-none transition"
+                className="h-12 w-1/2 rounded-xl border border-white/15 bg-white/5 px-2.5 text-xs font-semibold text-white focus:border-brand focus:outline-none transition appearance-none cursor-pointer"
               >
                 <option value="" className="bg-[#121316] text-white">Max</option>
                 {YEARS.map((y) => (
@@ -154,16 +154,16 @@ export default function QuickSearch() {
                 step="100000"
                 value={f.minPrice}
                 onChange={set('minPrice')}
-                className="w-1/2 rounded-xl border border-white/15 bg-white/5 px-2.5 py-3 text-xs font-semibold text-white placeholder:text-gray-500 focus:border-brand focus:outline-none transition"
+                className="h-12 w-1/2 rounded-xl border border-white/15 bg-white/5 px-2.5 text-xs font-semibold text-white placeholder:text-gray-500 focus:border-brand focus:outline-none transition"
               />
-              <span className="text-gray-500 text-xs">-</span>
+              <span className="text-gray-500 text-xs shrink-0">-</span>
               <input
                 type="number"
                 placeholder="Max Price"
                 step="100000"
                 value={f.maxPrice}
                 onChange={set('maxPrice')}
-                className="w-1/2 rounded-xl border border-white/15 bg-white/5 px-2.5 py-3 text-xs font-semibold text-white placeholder:text-gray-500 focus:border-brand focus:outline-none transition"
+                className="h-12 w-1/2 rounded-xl border border-white/15 bg-white/5 px-2.5 text-xs font-semibold text-white placeholder:text-gray-500 focus:border-brand focus:outline-none transition"
               />
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function QuickSearch() {
           <div className="lg:col-span-2">
             <button
               type="submit"
-              className="btn-primary w-full !py-3.5 !px-4 text-xs font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-red-950/40 cursor-pointer"
+              className="h-12 btn-primary w-full !px-4 text-xs font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-red-950/40 cursor-pointer"
             >
               <Search size={15} />
               <span>Search Vehicles</span>
@@ -183,7 +183,7 @@ export default function QuickSearch() {
         {/* 4 Feature Badges Row from screenshot */}
         <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-2 lg:grid-cols-4 gap-6 text-left">
           {/* Badge 1: Premium Vehicles */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3.5">
             <div className="grid h-11 w-11 place-items-center rounded-2xl bg-red-950/30 text-brand border border-brand/20 shrink-0">
               <Car size={20} />
             </div>
@@ -194,7 +194,7 @@ export default function QuickSearch() {
           </div>
 
           {/* Badge 2: Quality Guaranteed */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3.5">
             <div className="grid h-11 w-11 place-items-center rounded-2xl bg-red-950/30 text-brand border border-brand/20 shrink-0">
               <ShieldCheck size={20} />
             </div>
@@ -205,7 +205,7 @@ export default function QuickSearch() {
           </div>
 
           {/* Badge 3: Customer Support */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3.5">
             <div className="grid h-11 w-11 place-items-center rounded-2xl bg-red-950/30 text-brand border border-brand/20 shrink-0">
               <Headphones size={20} />
             </div>
@@ -216,13 +216,13 @@ export default function QuickSearch() {
           </div>
 
           {/* Badge 4: Easy Finance / Trade-In */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3.5">
             <div className="grid h-11 w-11 place-items-center rounded-2xl bg-red-950/30 text-brand border border-brand/20 shrink-0">
               <CreditCard size={20} />
             </div>
             <div>
-              <p className="text-sm font-extrabold text-white leading-tight">Easy Exchange</p>
-              <p className="text-[11px] text-gray-400 mt-0.5">Trade-in Options</p>
+              <p className="text-sm font-extrabold text-white leading-tight">Easy Trade-In</p>
+              <p className="text-[11px] text-gray-400 mt-0.5">Instant Appraisal</p>
             </div>
           </div>
         </div>

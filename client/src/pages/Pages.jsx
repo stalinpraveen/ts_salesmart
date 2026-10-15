@@ -209,8 +209,8 @@ export function About() {
 
       {/* Narrative Section */}
       <div className="container-page py-16 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
+        <div className="grid gap-12 lg:grid-cols-12 items-stretch">
+          <div className="lg:col-span-7 space-y-6 flex flex-col justify-center">
             <div className="flex items-center gap-2">
               <span className="w-5 h-[2px] bg-brand inline-block rounded-full" />
               <span className="eyebrow !text-brand">Dealership Profile</span>
@@ -252,15 +252,15 @@ export function About() {
             </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="relative overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-900 shadow-2xl group">
+          <div className="lg:col-span-5 flex">
+            <div className="relative overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-900 shadow-2xl group w-full min-h-[380px] flex flex-col justify-end">
               <img
                 src={ASSETS.heroLuxury || ASSETS.hero}
                 alt="TS SALES MART Showroom Vehicles"
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
+              <div className="relative z-10 p-6 text-white space-y-1">
                 <span className="inline-block rounded-md bg-brand px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
                   Chunnakam Showroom
                 </span>
@@ -285,17 +285,17 @@ export function About() {
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
             {PILLARS.map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="rounded-3xl border border-neutral-200 bg-white p-7 shadow-sm transition hover:shadow-xl hover:border-neutral-300 hover:-translate-y-1"
+                className="flex flex-col justify-start rounded-3xl border border-neutral-200/90 bg-white p-7 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-brand/40 hover:-translate-y-1 h-full"
               >
-                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-red-50 text-brand">
+                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-red-50 text-brand shrink-0">
                   <Icon size={24} />
                 </div>
-                <h3 className="mt-5 text-base font-bold text-neutral-900">{title}</h3>
-                <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed">{desc}</p>
+                <h3 className="mt-5 text-base font-bold text-neutral-900 leading-snug">{title}</h3>
+                <p className="mt-2 text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">{desc}</p>
               </div>
             ))}
           </div>
