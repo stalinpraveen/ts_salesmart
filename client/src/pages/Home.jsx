@@ -75,22 +75,40 @@ export default function Home() {
   return (
     <>
       {/* ========================================================= */}
-      {/* 1. CINEMATIC HERO SECTION (Accurately Matching Reference) */}
+      {/* 1. CINEMATIC FULL-BLEED HERO (Matching Reference Design)   */}
       {/* ========================================================= */}
-      <section className="relative overflow-hidden bg-[#09090b] text-white pt-12 pb-28 lg:pt-20 lg:pb-36 border-b border-white/5">
-        {/* Subtle Ambient Red Glow */}
-        <div
-          className="absolute -top-40 right-10 w-[600px] h-[600px] rounded-full bg-brand/15 blur-[140px] pointer-events-none"
-          aria-hidden="true"
-        />
+      <section className="relative overflow-hidden bg-[#09090b] text-white min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] flex items-center border-b border-white/5">
+        {/* Full-bleed Panoramic Showroom Car Background */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={ASSETS.heroBg || ASSETS.heroLuxury}
+            alt="TS SALES MART Luxury Showroom"
+            className="w-full h-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-right select-none pointer-events-none"
+            loading="eager"
+            onError={(e) => {
+              e.currentTarget.src = ASSETS.hero
+            }}
+          />
+          {/* Subtle Ambient Red Glow */}
+          <div
+            className="absolute -top-40 right-10 w-[600px] h-[600px] rounded-full bg-brand/15 blur-[140px] pointer-events-none"
+            aria-hidden="true"
+          />
+          {/* High-contrast gradient overlay across the left concrete wall to guarantee pristine text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/85 sm:via-[#09090b]/60 to-transparent w-full lg:w-3/5 pointer-events-none" />
+          {/* Bottom vignette blending cleanly with the floating search console */}
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] via-[#09090b]/70 to-transparent pointer-events-none" />
+          {/* Top subtle vignette */}
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#09090b]/70 to-transparent pointer-events-none" />
+        </div>
 
-        <div className="container-page relative z-10 grid items-center gap-10 lg:grid-cols-12">
-          {/* Left Hero Content */}
-          <div className="lg:col-span-6 space-y-6">
+        {/* Hero Left Content Overlay */}
+        <div className="container-page relative z-10 w-full pt-16 pb-28 sm:pt-20 sm:pb-36 lg:pt-24 lg:pb-40">
+          <div className="max-w-xl lg:max-w-2xl space-y-6">
             {/* Red Dash Eyebrow from reference */}
             <div className="flex items-center gap-2.5">
-              <span className="w-7 h-[3px] bg-brand inline-block rounded-full" />
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400">
+              <span className="w-8 h-[3px] bg-brand inline-block rounded-full" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-gray-300">
                 PREMIUM CAR DEALERSHIP
               </span>
             </div>
@@ -101,7 +119,7 @@ export default function Home() {
                 DRIVE YOUR <br />
                 <span className="text-brand">DREAM</span> CAR
               </h1>
-              <p className="text-xs font-semibold text-gray-400 tracking-widest uppercase pt-1">
+              <p className="text-xs sm:text-sm font-semibold text-gray-400 tracking-widest uppercase pt-2">
                 TS SALES MART · உங்களின் கனவு வாகனங்களுக்கு
               </p>
             </div>
@@ -112,37 +130,20 @@ export default function Home() {
             </p>
 
             {/* CTA Buttons: View Inventory ↗ & Contact Our Team */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-3">
               <Link
                 to="/vehicles"
-                className="btn-primary !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl shadow-xl shadow-red-950/40"
+                className="btn-primary !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl shadow-xl shadow-red-950/50 flex items-center gap-2"
               >
                 <span>View Inventory</span>
                 <ArrowUpRight size={17} />
               </Link>
               <Link
                 to="/contact"
-                className="btn-outline !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl"
+                className="btn-outline !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl bg-black/40 backdrop-blur-md border-white/20 hover:border-white/40"
               >
                 <span>Contact Our Team</span>
               </Link>
-            </div>
-          </div>
-
-          {/* Right Hero Vehicle Image: Realistic Black Car in Glass Showroom */}
-          <div className="lg:col-span-6">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black group">
-              <img
-                src={ASSETS.heroLuxury || ASSETS.hero}
-                alt="TS SALES MART Luxury Showroom"
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                loading="eager"
-                onError={(e) => {
-                  e.currentTarget.src = ASSETS.hero
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#09090b]/80 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#09090b]/40 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
