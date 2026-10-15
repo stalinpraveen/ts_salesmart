@@ -2,8 +2,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import { AuthProvider } from './features/auth/AuthContext'
 import { FavoritesProvider } from './features/favorites/FavoritesContext'
-import { CompareProvider } from './features/compare/CompareContext'
-import { ToastProvider } from './context/ToastContext'
 import Home from './pages/Home'
 import Vehicles from './pages/Vehicles'
 import VehicleDetails from './pages/VehicleDetails'
@@ -31,14 +29,10 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <ToastProvider>
-      <AuthProvider>
-        <FavoritesProvider>
-          <CompareProvider>
-            <RouterProvider router={router} />
-          </CompareProvider>
-        </FavoritesProvider>
-      </AuthProvider>
-    </ToastProvider>
+    <AuthProvider>
+      <FavoritesProvider>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
+    </AuthProvider>
   )
 }

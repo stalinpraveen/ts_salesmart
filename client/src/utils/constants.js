@@ -6,10 +6,6 @@ export const BUSINESS = {
     { display: '076 684 9867', href: 'tel:+94766849867' },
   ],
   address: 'No. 57, Ampalavanar Road, Uduvil, Chunnakam, Sri Lanka',
-  hours: 'Mon - Sat: 8:30 AM - 6:30 PM',
-  whatsappUrl:
-    'https://wa.me/94772056400?text=' +
-    encodeURIComponent('Hello TS Sales Mart, I would like to inquire about your vehicles.'),
   mapUrl:
     'https://www.google.com/maps/search/?api=1&query=' +
     encodeURIComponent('57 Ampalavanar Road, Uduvil, Chunnakam, Sri Lanka'),
@@ -28,4 +24,5 @@ export const ASSETS = {
   logo: '/assets/ts-sales-mart-logo.png',
   poster1: '/assets/ts-sales-mart-poster-1.jpg',
   poster2: '/assets/ts-sales-mart-poster-2.jpg',
+  hero: '/assets/ts-sales-mart-hero.jpg',
 }
