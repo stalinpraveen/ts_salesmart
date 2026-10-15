@@ -6,6 +6,8 @@ export const BUSINESS = {
     { display: '076 684 9867', href: 'tel:+94766849867' },
   ],
   address: 'No. 57, Ampalavanar Road, Uduvil, Chunnakam, Sri Lanka',
+  hours: 'Mon - Sat: 8:30 AM - 6:00 PM',
+  whatsappUrl: 'https://wa.me/94772056400?text=' + encodeURIComponent('Hello TS SALES MART, I would like to inquire about your vehicles.'),
   mapUrl:
     'https://www.google.com/maps/search/?api=1&query=' +
     encodeURIComponent('57 Ampalavanar Road, Uduvil, Chunnakam, Sri Lanka'),
