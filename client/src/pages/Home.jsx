@@ -318,24 +318,67 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Poster Reference Cards */}
-            <div className="relative z-10 lg:col-span-5 grid grid-cols-2 gap-4">
-              <div className="overflow-hidden rounded-2xl border border-white/20 shadow-xl bg-neutral-900 transition hover:scale-105 duration-300">
-                <img
-                  src={ASSETS.poster1}
-                  alt="TS SALES MART Promotional Poster 1"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="overflow-hidden rounded-2xl border border-white/20 shadow-xl bg-neutral-900 transition hover:scale-105 duration-300">
-                <img
-                  src={ASSETS.poster2}
-                  alt="TS SALES MART Promotional Poster 2"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
+            {/* Right Showcase: Featured Model Spotlight Cards */}
+            <div className="relative z-10 lg:col-span-5 grid gap-3 sm:grid-cols-2">
+              <Link
+                to="/vehicles?q=Raize"
+                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-brand hover:bg-white/10"
+              >
+                <div className="flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-brand">
+                  <span className="uppercase tracking-wider">Toyota</span>
+                  <span className="text-[10px] rounded-md bg-white/10 px-2 py-0.5 text-gray-300">Compact SUV</span>
+                </div>
+                <h4 className="mt-2 text-base font-extrabold text-white group-hover:text-brand transition">Toyota Raize</h4>
+                <p className="mt-1 text-xs text-gray-400">Direct Japanese Stock · Unregistered</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand">
+                  Explore Stock <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+
+              <Link
+                to="/vehicles?q=Wagon+R"
+                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-brand hover:bg-white/10"
+              >
+                <div className="flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-brand">
+                  <span className="uppercase tracking-wider">Suzuki</span>
+                  <span className="text-[10px] rounded-md bg-white/10 px-2 py-0.5 text-gray-300">Hybrid</span>
+                </div>
+                <h4 className="mt-2 text-base font-extrabold text-white group-hover:text-brand transition">Wagon R Custom Z</h4>
+                <p className="mt-1 text-xs text-gray-400">Fuel-Efficient City Hybrid</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand">
+                  Explore Stock <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+
+              <Link
+                to="/vehicles?q=Hilux"
+                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-brand hover:bg-white/10"
+              >
+                <div className="flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-brand">
+                  <span className="uppercase tracking-wider">Toyota</span>
+                  <span className="text-[10px] rounded-md bg-white/10 px-2 py-0.5 text-gray-300">4x4 Pickup</span>
+                </div>
+                <h4 className="mt-2 text-base font-extrabold text-white group-hover:text-brand transition">Hilux Rocco</h4>
+                <p className="mt-1 text-xs text-gray-400">All-Terrain Double Cab</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand">
+                  Explore Stock <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+
+              <Link
+                to="/vehicles?type=van"
+                className="group rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-brand hover:bg-white/10"
+              >
+                <div className="flex items-center justify-between text-xs font-bold text-gray-400 group-hover:text-brand">
+                  <span className="uppercase tracking-wider">Toyota</span>
+                  <span className="text-[10px] rounded-md bg-white/10 px-2 py-0.5 text-gray-300">Passenger & Cargo</span>
+                </div>
+                <h4 className="mt-2 text-base font-extrabold text-white group-hover:text-brand transition">HiAce Highroof</h4>
+                <p className="mt-1 text-xs text-gray-400">Spacious Commercial Van</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand">
+                  Explore Stock <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
             </div>
           </div>
 

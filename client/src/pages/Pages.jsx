@@ -186,20 +186,28 @@ export function About() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-              <div className="overflow-hidden rounded-2xl border border-white/20 shadow-xl bg-neutral-900">
-                <img
-                  src={ASSETS.poster1}
-                  alt="TS SALES MART Promotional Poster 1"
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="overflow-hidden rounded-2xl border border-white/20 shadow-xl bg-neutral-900">
-                <img
-                  src={ASSETS.poster2}
-                  alt="TS SALES MART Promotional Poster 2"
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                />
+            <div className="lg:col-span-5 rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-md space-y-4">
+              <h3 className="font-display text-xl font-bold uppercase text-white">Chunnakam Showroom</h3>
+              <p className="text-xs text-neutral-300 leading-relaxed">
+                Visit our physical dealership on Ampalavanar Road to view vehicles in person, test options, and arrange immediate registration or trade-in exchange.
+              </p>
+              <div className="pt-2 flex flex-col gap-2.5">
+                <a
+                  href={BUSINESS.mapUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-outline !py-2.5 !px-4 text-xs font-semibold justify-center"
+                >
+                  <Compass size={14} /> Open Location in Google Maps
+                </a>
+                <a
+                  href={BUSINESS.whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn !py-2.5 !px-4 text-xs font-bold justify-center bg-[#25D366] text-white hover:bg-[#20ba59] transition"
+                >
+                  <MessageSquare size={14} /> Direct WhatsApp Message
+                </a>
               </div>
             </div>
           </div>
