@@ -110,3 +110,33 @@ test('uploads: auth required, and only JPG/PNG/WebP accepted', async () => {
   assert.equal(res.status, 400)
   assert.match((await res.json()).message, /JPG, PNG or WebP/)
 })
+
+test('favorites: require auth, add, list, and remove', async () => {
+  assert.equal((await call('GET', '/api/favorites')).status, 401)
+  const cust = {}
+  await call('POST', '/api/auth/register', { name: 'FavUser', email: 'fav@example.com', password: 'password123' }, cust)
+  const csrf = { 'x-csrf-token': cust.csrf }
+
+  // Create a vehicle using staff
+  const staff = {}
+  await call('POST', '/api/auth/login', { email: 'c@example.com', password: 'password123' }, staff)
+  const vRes = await call('POST', '/api/vehicles', vehicle, staff, { 'x-csrf-token': staff.csrf })
+  const vId = vRes.json.data._id
+
+  // Add to favorites
+  const addRes = await call('POST', `/api/favorites/${vId}`, null, cust, csrf)
+  assert.equal(addRes.status, 201)
+
+  // Get favorites
+  const listRes = await call('GET', '/api/favorites', null, cust)
+  assert.equal(listRes.status, 200)
+  assert.equal(listRes.json.data.length, 1)
+  assert.equal(listRes.json.ids[0], vId)
+
+  // Remove from favorites
+  const delRes = await call('DELETE', `/api/favorites/${vId}`, null, cust, csrf)
+  assert.equal(delRes.status, 200)
+
+  const emptyList = await call('GET', '/api/favorites', null, cust)
+  assert.equal(emptyList.json.data.length, 0)
+})

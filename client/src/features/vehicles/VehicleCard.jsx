@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom'
 import { Heart, Gauge, Fuel, Settings2 } from 'lucide-react'
 import { formatLKR, formatKm } from '../../utils/format'
+import { useFavorites } from '../favorites/FavoritesContext'
 
 const FALLBACK = '/assets/ts-sales-mart-logo.png'
 
 export default function VehicleCard({ vehicle }) {
   const id = vehicle._id || vehicle.id
   const image = vehicle.images?.[0]?.url || vehicle.images?.[0] || FALLBACK
+  const { isFavorite, toggleFavorite } = useFavorites()
+  const favored = isFavorite(id)
+
   return (
     <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
       <div className="relative aspect-[4/3] bg-surface">
@@ -17,9 +21,22 @@ export default function VehicleCard({ vehicle }) {
           onError={(e) => { e.currentTarget.src = FALLBACK; e.currentTarget.className = 'h-full w-full object-contain p-8' }}
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
-        <span className="badge absolute left-3 top-3 bg-ink text-white">{vehicle.condition}</span>
-        <button type="button" aria-label="Add to favourites" className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-ink shadow transition hover:text-brand">
-          <Heart size={18} />
+        <span className="badge absolute left-3 top-3 bg-ink text-white">{vehicle.condition === 'new' ? 'Brand New' : 'Pre-Owned'}</span>
+        <button
+          type="button"
+          aria-label={favored ? 'Remove from favourites' : 'Add to favourites'}
+          aria-pressed={favored}
+          onClick={(e) => {
+            e.preventDefault()
+            toggleFavorite(vehicle)
+          }}
+          className={`absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full shadow transition-all duration-200 cursor-pointer ${
+            favored
+              ? 'bg-white text-brand scale-105 shadow-md'
+              : 'bg-white/90 text-gray-600 hover:text-brand hover:scale-105'
+          }`}
+        >
+          <Heart size={18} className={favored ? 'fill-brand text-brand' : ''} />
         </button>
       </div>
       <div className="p-5">

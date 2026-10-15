@@ -79,6 +79,36 @@ export default function Home() {
         <div className="mt-8"><VehicleGrid params={{ sort: 'newest', limit: 3 }} emptyText="New arrivals will appear here once inventory is published." /></div>
       </section>
 
+      {/* Special Showcase Banner highlighting Brand Identity & Models from Promotional Posters */}
+      <section className="container-page py-8">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-neutral-900 via-neutral-950 to-neutral-900 p-8 sm:p-12 text-white border border-neutral-800 shadow-2xl">
+          <div className="relative z-10 max-w-2xl">
+            <span className="badge bg-brand text-white font-bold tracking-wider uppercase">
+              Special Showcase · சிறப்பு விற்பனை
+            </span>
+            <h2 className="mt-4 font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-wide">
+              உங்கள் கனவு வாகனங்களுக்கு <br />
+              <span className="text-brand">Drive Your Dreams</span>
+            </h2>
+            <p className="mt-4 text-sm sm:text-base text-gray-300 leading-relaxed">
+              Looking for popular Japanese models like the <strong>Toyota Raize</strong>, <strong>Suzuki Wagon R Custom Z</strong>, <strong>Toyota Hilux Rocco</strong>, or <strong>Toyota HiAce Highroof</strong>? Explore our verified stock or talk directly with our sales team.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Link to="/vehicles?brand=Toyota" className="btn-primary !py-2.5 text-xs sm:text-sm">
+                Toyota Vehicles
+              </Link>
+              <Link to="/vehicles?brand=Suzuki" className="btn-outline !py-2.5 text-xs sm:text-sm">
+                Suzuki Vehicles
+              </Link>
+              <Link to="/vehicles?type=van" className="btn-outline !py-2.5 text-xs sm:text-sm">
+                Cars &amp; Vans
+              </Link>
+            </div>
+          </div>
+          <div className="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-brand/20 blur-3xl pointer-events-none" />
+        </div>
+      </section>
+
       <section className="bg-ink py-16 text-white" aria-labelledby="why-h">
         <div className="container-page">
           <p className="eyebrow">Our services</p>

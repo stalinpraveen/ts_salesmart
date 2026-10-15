@@ -4,6 +4,7 @@ import { asyncHandler } from '../utils/ApiError.js'
 import { authenticate, staffOnly } from '../middleware/auth.js'
 import * as auth from '../controllers/authController.js'
 import * as admin from '../controllers/adminController.js'
+import * as favorite from '../controllers/favoriteController.js'
 import { handleUpload } from '../middleware/upload.js'
 
 const strict = (limit) => rateLimit({ windowMs: 15 * 60 * 1000, limit, standardHeaders: true, legacyHeaders: false,
@@ -26,3 +27,9 @@ adminRouter.patch('/vehicles/:id/status', asyncHandler(admin.setVehicleStatus))
 adminRouter.get('/inquiries', asyncHandler(admin.adminListInquiries))
 adminRouter.patch('/inquiries/:id', asyncHandler(admin.updateInquiry))
 adminRouter.post('/uploads', handleUpload, asyncHandler(admin.uploadImages))
+
+export const favoriteRouter = Router()
+favoriteRouter.use(authenticate)
+favoriteRouter.get('/', asyncHandler(favorite.getFavorites))
+favoriteRouter.post('/:vehicleId', asyncHandler(favorite.addFavorite))
+favoriteRouter.delete('/:vehicleId', asyncHandler(favorite.removeFavorite))

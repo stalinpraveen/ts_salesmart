@@ -25,7 +25,11 @@ export default function Vehicles() {
 
   const update = (k, v) => {
     const n = new URLSearchParams(sp)
-    v ? n.set(k, v) : n.delete(k)
+    if (v) {
+      n.set(k, v)
+    } else {
+      n.delete(k)
+    }
     n.delete('page')
     setSp(n)
   }

@@ -22,5 +22,6 @@ export const listQuerySchema = z.object({
   condition: z.enum(CONDITIONS).optional(),
   location: z.string().trim().max(50).optional(),
   featured: bool.optional(),
+  ids: z.string().transform((s) => s.split(',').map((x) => x.trim()).filter((id) => /^[a-f\d]{24}$/i.test(id))).optional(),
   sort: z.enum(['newest', 'price_asc', 'price_desc', 'year_desc']).default('newest'),
 })

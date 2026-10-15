@@ -1,12 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import { AuthProvider } from './features/auth/AuthContext'
+import { FavoritesProvider } from './features/favorites/FavoritesContext'
 import Home from './pages/Home'
 import Vehicles from './pages/Vehicles'
 import VehicleDetails from './pages/VehicleDetails'
+import Favorites from './pages/Favorites'
 import Login from './pages/Login'
 import Admin from './pages/Admin'
-import { Favorites, About, Contact, NotFound } from './pages/Pages'
+import { About, Contact, NotFound } from './pages/Pages'
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,9 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <FavoritesProvider>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
     </AuthProvider>
   )
 }

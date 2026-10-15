@@ -25,6 +25,9 @@ export function buildPublicFilter(q) {
     const r = new RegExp(escapeRegex(q.q), 'i')
     f.$or = [{ title: r }, { brand: r }, { model: r }]
   }
+  if (q.ids && q.ids.length > 0) {
+    f._id = { $in: q.ids }
+  }
   return f
 }
 

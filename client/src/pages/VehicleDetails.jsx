@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Phone } from 'lucide-react'
+import { Phone, Heart } from 'lucide-react'
 import { fetchVehicle } from '../features/vehicles/vehicleService'
 import VehicleCard from '../features/vehicles/VehicleCard'
 import InquiryForm from '../features/inquiries/InquiryForm'
 import { formatLKR, formatKm } from '../utils/format'
 import { BUSINESS, ASSETS } from '../utils/constants'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useFavorites } from '../features/favorites/FavoritesContext'
 
 const STATUS_LABEL = { available: 'Available', reserved: 'Reserved', sold: 'Sold' }
 
@@ -25,6 +26,8 @@ export default function VehicleDetails() {
   }, [id])
 
   const v = state.v
+  const { isFavorite, toggleFavorite } = useFavorites()
+  const favored = isFavorite(v?._id)
   usePageTitle(v ? `${v.title} | TS SALES MART` : 'Vehicle | TS SALES MART')
 
   if (state.status === 'loading') return <div className="container-page py-20 text-muted">Loading…</div>
@@ -72,8 +75,20 @@ export default function VehicleDetails() {
         </div>
 
         <aside className="space-y-5 lg:sticky lg:top-32 lg:self-start">
-          <div className="rounded-2xl border border-gray-200 p-6 shadow-sm">
-            <span className={`badge ${v.status === 'available' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-700'}`}>{STATUS_LABEL[v.status]}</span>
+          <div className="rounded-2xl border border-gray-200 p-6 shadow-sm bg-white">
+            <div className="flex items-center justify-between">
+              <span className={`badge ${v.status === 'available' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-700'}`}>{STATUS_LABEL[v.status]}</span>
+              <button
+                type="button"
+                onClick={() => toggleFavorite(v)}
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold border transition cursor-pointer ${
+                  favored ? 'border-brand bg-brand/10 text-brand' : 'border-gray-200 text-gray-600 hover:text-brand hover:border-gray-300'
+                }`}
+              >
+                <Heart size={14} className={favored ? 'fill-brand text-brand' : ''} />
+                {favored ? 'Saved' : 'Save'}
+              </button>
+            </div>
             <h1 className="mt-3 text-2xl font-extrabold">{v.title}</h1>
             <p className="mt-1 text-3xl font-extrabold text-brand">{formatLKR(v.price)}</p>
             <div className="mt-5 space-y-2">

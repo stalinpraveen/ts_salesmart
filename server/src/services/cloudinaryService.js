@@ -3,9 +3,21 @@ import { ApiError } from '../utils/ApiError.js'
 
 let configured = false
 function ensureConfigured() {
+  const url = process.env.CLOUDINARY_URL
   const { CLOUDINARY_CLOUD_NAME: cloud_name, CLOUDINARY_API_KEY: api_key, CLOUDINARY_API_SECRET: api_secret } = process.env
-  if (!cloud_name || !api_key || !api_secret) throw new ApiError(503, 'Image uploads are not configured')
-  if (!configured) { cloudinary.config({ cloud_name, api_key, api_secret, secure: true }); configured = true }
+
+  if (!url && (!cloud_name || !api_key || !api_secret)) {
+    throw new ApiError(503, 'Image uploads are not configured in server/.env')
+  }
+
+  if (!configured) {
+    if (url) {
+      cloudinary.config(url)
+    } else {
+      cloudinary.config({ cloud_name, api_key, api_secret, secure: true })
+    }
+    configured = true
+  }
 }
 
 export function uploadImage(buffer) {
@@ -19,7 +31,7 @@ export function uploadImage(buffer) {
           // Optimised on delivery: auto format/quality, capped width.
           transformation: [{ width: 1600, crop: 'limit', quality: 'auto', fetch_format: 'auto' }],
         },
-        (err, result) => (err ? reject(err) : resolve({ url: result.secure_url, publicId: result.public_id })),
+        (err, result) => (err ? reject(new ApiError(400, `Image upload failed: ${err.message || 'Cloudinary authentication or upload error'}`)) : resolve({ url: result.secure_url, publicId: result.public_id })),
       )
       .end(buffer)
   })

@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 import rateLimit from 'express-rate-limit'
 import { env } from './config/env.js'
 import vehicleRoutes from './routes/vehicleRoutes.js'
-import { authRouter, inquiryRouter, adminRouter } from './routes/apiRoutes.js'
+import { authRouter, inquiryRouter, adminRouter, favoriteRouter } from './routes/apiRoutes.js'
 import { notFound, errorHandler } from './middleware/errorHandler.js'
 
 export function createApp() {
@@ -21,6 +21,7 @@ export function createApp() {
   app.use('/api/vehicles', vehicleRoutes)
   app.use('/api/auth', authRouter)
   app.use('/api/inquiries', inquiryRouter)
+  app.use('/api/favorites', favoriteRouter)
   app.use('/api/admin', adminRouter)
 
   app.use(notFound)
