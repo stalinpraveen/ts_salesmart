@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { Search, Heart, User, Menu, X, Phone, Shield, Calendar } from 'lucide-react'
+import { Search, Heart, User, Menu, X, Phone, Shield } from 'lucide-react'
 import { ASSETS, BUSINESS } from '../utils/constants'
 import { useFavorites } from '../features/favorites/FavoritesContext'
 import { useAuth } from '../features/auth/AuthContext'
@@ -147,13 +147,12 @@ export default function Header() {
             <User size={18} className={user ? 'text-brand' : ''} />
           </Link>
 
-          {/* Red Action Button: Matching "Book a Test Drive" from screenshot */}
+          {/* Red Action Button: Explore Vehicles */}
           <Link
-            to="/contact"
+            to="/vehicles"
             className="hidden md:inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-red-950/40 hover:bg-red-600 active:scale-95 transition"
           >
-            <Calendar size={14} />
-            <span>Book a Test Drive</span>
+            <span>Explore Vehicles</span>
           </Link>
 
           {/* Mobile Menu Hamburger */}
@@ -208,11 +207,11 @@ export default function Header() {
 
             <div className="pt-3 border-t border-white/10">
               <Link
-                to="/contact"
+                to="/vehicles"
                 onClick={() => setOpen(false)}
-                className="btn-primary w-full text-center flex items-center justify-center gap-2"
+                className="btn-primary w-full text-center"
               >
-                <Calendar size={15} /> Book a Test Drive
+                Explore Vehicles
               </Link>
             </div>
           </div>

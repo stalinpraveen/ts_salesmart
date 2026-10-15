@@ -10,7 +10,6 @@ import {
   MapPin,
   ArrowRight,
   ArrowUpRight,
-  Calendar,
   Handshake,
   Users,
   ShieldCheck,
@@ -112,7 +111,7 @@ export default function Home() {
               Explore our premium collection of vehicles and find the perfect car that matches your lifestyle.
             </p>
 
-            {/* CTA Buttons: View Inventory ↗ & Book a Test Drive 📅 */}
+            {/* CTA Buttons: View Inventory ↗ & Contact Our Team */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 to="/vehicles"
@@ -125,8 +124,7 @@ export default function Home() {
                 to="/contact"
                 className="btn-outline !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl"
               >
-                <span>Book a Test Drive</span>
-                <Calendar size={16} />
+                <span>Contact Our Team</span>
               </Link>
             </div>
           </div>
@@ -135,10 +133,13 @@ export default function Home() {
           <div className="lg:col-span-6">
             <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black group">
               <img
-                src={ASSETS.heroLuxury}
+                src={ASSETS.heroLuxury || ASSETS.hero}
                 alt="TS SALES MART Luxury Showroom"
                 className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="eager"
+                onError={(e) => {
+                  e.currentTarget.src = ASSETS.hero
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#09090b]/80 via-transparent to-transparent pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#09090b]/40 via-transparent to-transparent pointer-events-none" />

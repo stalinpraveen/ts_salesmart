@@ -147,7 +147,7 @@ export default function Favorites() {
                   Contact Our Showroom About These Vehicles
                 </h3>
                 <p className="text-xs text-neutral-500 max-w-xl">
-                  Call our sales hotlines or WhatsApp us to schedule an on-site test drive and verify ownership papers.
+                  Call our sales hotlines or WhatsApp us to schedule an on-site vehicle inspection and verify ownership papers.
                 </p>
               </div>
 
