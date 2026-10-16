@@ -7,17 +7,23 @@ import * as admin from '../controllers/adminController.js'
 import * as favorite from '../controllers/favoriteController.js'
 import { handleUpload } from '../middleware/upload.js'
 
-const strict = (limit) => rateLimit({ windowMs: 15 * 60 * 1000, limit, standardHeaders: true, legacyHeaders: false,
-  message: { success: false, message: 'Too many attempts. Please try again later.' } })
+const authLimiter = (limit, windowMs = 15 * 60 * 1000) =>
+  rateLimit({
+    windowMs,
+    limit,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { success: false, message: 'Too many attempts. Please try again later.' },
+  })
 
 export const authRouter = Router()
-authRouter.post('/register', strict(20), asyncHandler(auth.register))
-authRouter.post('/login', strict(20), asyncHandler(auth.login))
+authRouter.post('/register', authLimiter(10, 60 * 60 * 1000), asyncHandler(auth.register)) // 10 per hour
+authRouter.post('/login', authLimiter(10, 15 * 60 * 1000), asyncHandler(auth.login))       // 10 per 15 min
 authRouter.post('/logout', auth.logout)
 authRouter.get('/me', authenticate, auth.me)
 
 export const inquiryRouter = Router()
-inquiryRouter.post('/', strict(20), asyncHandler(admin.createInquiry))
+inquiryRouter.post('/', authLimiter(15, 30 * 60 * 1000), asyncHandler(admin.createInquiry))
 
 export const adminRouter = Router()
 adminRouter.use(staffOnly)
