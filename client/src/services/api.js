@@ -18,5 +18,10 @@ api.interceptors.request.use((config) => {
   return config
 })
 
-export const errorMessage = (e, fallback = 'Something went wrong. Please try again.') =>
-  e.response?.data?.message || fallback
+export const errorMessage = (e, fallback = 'Something went wrong. Please try again.') => {
+  if (e.response?.data?.message) return e.response.data.message
+  if (e.code === 'ERR_NETWORK' || !e.response) {
+    return 'Cannot connect to backend server. Please ensure the backend is running on port 5000.'
+  }
+  return fallback
+}
