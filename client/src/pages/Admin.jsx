@@ -15,6 +15,7 @@ import {
   Shield,
   Star,
   Search,
+  Trash2,
 } from 'lucide-react'
 import { useAuth } from '../features/auth/AuthContext'
 import VehicleForm from '../features/vehicles/VehicleForm'
@@ -247,6 +248,11 @@ function Vehicles() {
       act(() => api.delete(`/vehicles/${v._id}`))
     }
   }
+  const removePermanent = (v) => {
+    if (window.confirm(`Permanently delete "${v.title}"? This will remove it completely from the database.`)) {
+      act(() => api.delete(`/vehicles/${v._id}/permanent`))
+    }
+  }
 
   if (editing) {
     return (
@@ -409,10 +415,19 @@ function Vehicles() {
                           </button>
                           <button
                             aria-label={`Archive ${v.title}`}
+                            title="Archive Vehicle"
                             onClick={() => archive(v)}
-                            className="p-2 rounded-lg text-neutral-600 hover:text-red-600 hover:bg-red-50 transition cursor-pointer"
+                            className="p-2 rounded-lg text-neutral-600 hover:text-amber-600 hover:bg-amber-50 transition cursor-pointer"
                           >
                             <Archive size={16} />
+                          </button>
+                          <button
+                            aria-label={`Permanently delete ${v.title}`}
+                            title="Delete Permanently"
+                            onClick={() => removePermanent(v)}
+                            className="p-2 rounded-lg text-neutral-600 hover:text-red-600 hover:bg-red-50 transition cursor-pointer"
+                          >
+                            <Trash2 size={16} />
                           </button>
                         </div>
                       </td>
