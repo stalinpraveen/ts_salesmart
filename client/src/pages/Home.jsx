@@ -77,13 +77,13 @@ export default function Home() {
       {/* ========================================================= */}
       {/* 1. CINEMATIC FULL-BLEED HERO (Matching Reference Design)   */}
       {/* ========================================================= */}
-      <section className="relative overflow-hidden bg-[#09090b] text-white min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] flex items-center border-b border-white/5">
+      <section className="relative overflow-hidden bg-[#09090b] text-white min-h-[540px] sm:min-h-[640px] lg:min-h-[720px] flex items-center border-b border-white/5">
         {/* Full-bleed Panoramic Showroom Car Background */}
         <div className="absolute inset-0 z-0">
           <img
             src={ASSETS.heroBg || ASSETS.heroLuxury}
             alt="TS SALES MART Luxury Showroom"
-            className="w-full h-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-right select-none pointer-events-none"
+            className="w-full h-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-right select-none pointer-events-none transition-transform duration-1000 ease-out"
             loading="eager"
             onError={(e) => {
               e.currentTarget.src = ASSETS.hero
@@ -91,56 +91,56 @@ export default function Home() {
           />
           {/* Subtle Ambient Red Glow */}
           <div
-            className="absolute -top-40 right-10 w-[600px] h-[600px] rounded-full bg-brand/15 blur-[140px] pointer-events-none"
+            className="absolute -top-40 right-10 w-[600px] h-[600px] rounded-full bg-brand/15 blur-[140px] pointer-events-none animate-pulse-glow"
             aria-hidden="true"
           />
           {/* High-contrast gradient overlay across the left concrete wall to guarantee pristine text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/85 sm:via-[#09090b]/60 to-transparent w-full lg:w-3/5 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/90 sm:via-[#09090b]/75 to-transparent w-full lg:w-3/5 pointer-events-none" />
           {/* Bottom vignette blending cleanly with the floating search console */}
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] via-[#09090b]/70 to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent pointer-events-none" />
           {/* Top subtle vignette */}
           <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#09090b]/70 to-transparent pointer-events-none" />
         </div>
 
         {/* Hero Left Content Overlay */}
-        <div className="container-page relative z-10 w-full pt-16 pb-28 sm:pt-20 sm:pb-36 lg:pt-24 lg:pb-40">
-          <div className="max-w-xl lg:max-w-2xl space-y-6">
+        <div className="container-page relative z-10 w-full pt-12 pb-24 sm:pt-20 sm:pb-36 lg:pt-24 lg:pb-40">
+          <div className="max-w-xl lg:max-w-2xl space-y-5 sm:space-y-6">
             {/* Red Dash Eyebrow from reference */}
             <div className="flex items-center gap-2.5">
-              <span className="w-8 h-[3px] bg-brand inline-block rounded-full" />
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-gray-300">
-                PREMIUM CAR DEALERSHIP
+              <span className="w-8 h-[3px] bg-brand inline-block rounded-full shadow-sm shadow-red-500 animate-pulse" />
+              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-gray-300">
+                PREMIUM CAR DEALERSHIP · JAFFNA
               </span>
             </div>
 
             {/* Massive Bold Headline: DRIVE YOUR DREAM CAR */}
             <div className="space-y-1">
-              <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white leading-[0.92]">
+              <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white leading-[0.92]">
                 DRIVE YOUR <br />
-                <span className="text-brand">DREAM</span> CAR
+                <span className="text-brand drop-shadow-[0_2px_12px_rgba(217,0,0,0.5)]">DREAM</span> CAR
               </h1>
-              <p className="text-xs sm:text-sm font-semibold text-gray-400 tracking-widest uppercase pt-2">
+              <p className="text-[11px] sm:text-xs md:text-sm font-semibold text-gray-400 tracking-widest uppercase pt-2">
                 TS SALES MART · உங்களின் கனவு வாகனங்களுக்கு
               </p>
             </div>
 
             {/* Supporting Text matching reference */}
-            <p className="max-w-lg text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
-              Explore our premium collection of vehicles and find the perfect car that matches your lifestyle.
+            <p className="max-w-lg text-sm sm:text-base md:text-lg text-gray-300 font-normal leading-relaxed">
+              Explore our verified collection of Japanese cars, passenger vans, and commercial vehicles ready for immediate showroom inspection.
             </p>
 
             {/* CTA Buttons: View Inventory ↗ & Contact Our Team */}
-            <div className="flex flex-wrap items-center gap-4 pt-3">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
               <Link
                 to="/vehicles"
-                className="btn-primary !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl shadow-xl shadow-red-950/50 flex items-center gap-2"
+                className="btn-primary !px-7 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl shadow-xl shadow-red-950/50 flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <span>View Inventory</span>
-                <ArrowUpRight size={17} />
+                <ArrowUpRight size={17} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link
                 to="/contact"
-                className="btn-outline !px-8 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl bg-black/40 backdrop-blur-md border-white/20 hover:border-white/40"
+                className="btn-outline !px-7 !py-4 text-xs font-bold uppercase tracking-wider rounded-xl bg-black/40 backdrop-blur-md border-white/20 hover:border-white/40 justify-center"
               >
                 <span>Contact Our Team</span>
               </Link>
@@ -159,18 +159,18 @@ export default function Home() {
       {/* ========================================================= */}
       {/* 3. BRAND SHOWCASE CAROUSEL (White Capsule from Reference)  */}
       {/* ========================================================= */}
-      <section className="container-page pt-10 pb-6">
-        <div className="rounded-full bg-white shadow-xl shadow-black/5 py-4 px-6 sm:px-10 border border-neutral-200/80 max-w-5xl mx-auto flex items-center justify-between gap-4">
+      <section className="container-page pt-8 pb-4 sm:pt-10 sm:pb-6">
+        <div className="rounded-full bg-white shadow-xl shadow-black/5 py-3 sm:py-4 px-4 sm:px-8 border border-neutral-200/80 max-w-5xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
           <button
             type="button"
             onClick={prevBrand}
             aria-label="Previous brand"
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-brand hover:text-white transition cursor-pointer"
+            className="grid h-8 w-8 sm:h-9 sm:w-9 shrink-0 place-items-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-brand hover:text-white transition cursor-pointer active:scale-90"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={16} />
           </button>
 
-          <div className="flex items-center justify-around gap-6 sm:gap-10 w-full overflow-hidden">
+          <div className="flex items-center justify-around gap-4 sm:gap-8 md:gap-10 w-full overflow-hidden no-scrollbar">
             {BRANDS.map((_, i) => {
               const activeIndex = (i + brandOffset) % BRANDS.length
               const item = BRANDS[activeIndex]
@@ -178,7 +178,7 @@ export default function Home() {
                 <Link
                   key={item.name + i}
                   to={item.link}
-                  className={`text-xs sm:text-sm md:text-base font-bold transition hover:opacity-75 ${item.color} ${item.font} shrink-0`}
+                  className={`text-xs sm:text-sm md:text-base font-bold transition hover:text-brand hover:scale-105 ${item.color} ${item.font} shrink-0 py-1`}
                 >
                   {item.name}
                 </Link>
@@ -190,9 +190,9 @@ export default function Home() {
             type="button"
             onClick={nextBrand}
             aria-label="Next brand"
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-brand hover:text-white transition cursor-pointer"
+            className="grid h-8 w-8 sm:h-9 sm:w-9 shrink-0 place-items-center rounded-full bg-neutral-100 text-neutral-600 hover:bg-brand hover:text-white transition cursor-pointer active:scale-90"
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={16} />
           </button>
         </div>
       </section>
@@ -200,47 +200,48 @@ export default function Home() {
       {/* ========================================================= */}
       {/* 4. VEHICLE CATEGORIES                                     */}
       {/* ========================================================= */}
-      <section className="container-page py-16" aria-labelledby="cat-h">
+      <section className="container-page py-12 sm:py-16" aria-labelledby="cat-h">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
             <p className="eyebrow">Explore Inventory</p>
             <h2 id="cat-h" className="section-title mt-1">Vehicle Categories</h2>
-            <p className="mt-1 text-sm text-neutral-600">
+            <p className="mt-1 text-xs sm:text-sm text-neutral-600">
               Browse our diverse inventory categorized to fit your family, business, or lifestyle needs.
             </p>
           </div>
-          <Link to="/vehicles" className="text-xs font-bold text-brand hover:underline flex items-center gap-1">
-            Browse All Categories <ArrowRight size={13} />
+          <Link to="/vehicles" className="text-xs font-bold text-brand hover:underline flex items-center gap-1 group">
+            <span>Browse All Categories</span>
+            <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 items-stretch">
+        <div className="grid grid-cols-2 gap-3.5 sm:gap-4 sm:grid-cols-3 lg:grid-cols-5 items-stretch">
           {CATEGORIES.map(({ label, desc, icon: Icon, to, badge }, idx) => (
             <Link
               key={label}
               to={to}
-              className={`group flex flex-col justify-between rounded-3xl border border-neutral-200/90 bg-white p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-brand hover:shadow-xl hover:shadow-black/5 h-full ${
+              className={`group flex flex-col justify-between rounded-3xl border border-neutral-200/90 bg-white p-5 sm:p-6 text-left transition-all duration-300 hover:-translate-y-1.5 hover:border-brand hover:shadow-xl hover:shadow-black/5 active:scale-[0.98] h-full ${
                 idx === 4 ? 'col-span-2 sm:col-span-1' : ''
               }`}
             >
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-neutral-100 text-neutral-800 transition-colors duration-200 group-hover:bg-brand group-hover:text-white shadow-xs">
-                    <Icon size={24} />
+                  <span className="grid h-11 w-11 sm:h-12 sm:w-12 place-items-center rounded-2xl bg-neutral-100 text-neutral-800 transition-colors duration-200 group-hover:bg-brand group-hover:text-white shadow-xs">
+                    <Icon size={22} />
                   </span>
                   <span className="badge bg-neutral-100 text-neutral-600 text-[10px] font-bold uppercase group-hover:bg-brand/10 group-hover:text-brand transition-colors">
                     {badge}
                   </span>
                 </div>
-                <h3 className="mt-5 text-base font-bold text-neutral-900 group-hover:text-brand transition-colors">
+                <h3 className="mt-4 sm:mt-5 text-sm sm:text-base font-bold text-neutral-900 group-hover:text-brand transition-colors">
                   {label}
                 </h3>
-                <p className="mt-1 text-xs text-neutral-500 leading-snug">
+                <p className="mt-1 text-[11px] sm:text-xs text-neutral-500 leading-snug">
                   {desc}
                 </p>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-bold text-neutral-400 group-hover:text-brand transition-colors">
+              <div className="mt-4 sm:mt-5 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-bold text-neutral-400 group-hover:text-brand transition-colors">
                 <span>Explore</span>
                 <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
               </div>

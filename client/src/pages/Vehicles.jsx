@@ -196,9 +196,9 @@ export default function Vehicles() {
       {/* Main Inventory Layout */}
       <div className="container-page py-10">
         {/* Top Control Bar: Category Pills & Condition Switcher */}
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between border-b border-neutral-200 pb-6">
-          {/* Vehicle Type Tabs */}
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between border-b border-neutral-200 pb-5">
+          {/* Vehicle Type Tabs (Smooth Horizontal Swipe Rail on Mobile) */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
             {QUICK_TYPES.map(({ label, value, icon: Icon }) => {
               const isSelected = (sp.get('type') || '') === value
               return (
@@ -206,7 +206,7 @@ export default function Vehicles() {
                   key={label}
                   type="button"
                   onClick={() => update('type', value)}
-                  className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all duration-200 cursor-pointer ${
+                  className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all duration-200 cursor-pointer shrink-0 active:scale-95 ${
                     isSelected
                       ? 'bg-neutral-900 text-white shadow-md'
                       : 'bg-white border border-neutral-200 text-neutral-700 hover:border-neutral-300 hover:bg-neutral-50'
@@ -220,7 +220,7 @@ export default function Vehicles() {
           </div>
 
           {/* Condition Pills & Filter Toggle */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
             {QUICK_CONDITIONS.map(({ label, value }) => {
               const isSelected = (sp.get('condition') || '') === value
               return (
@@ -228,7 +228,7 @@ export default function Vehicles() {
                   key={label}
                   type="button"
                   onClick={() => update('condition', value)}
-                  className={`rounded-xl px-3.5 py-2 text-xs font-bold transition-all duration-200 cursor-pointer ${
+                  className={`rounded-xl px-3.5 py-2 text-xs font-bold transition-all duration-200 cursor-pointer shrink-0 active:scale-95 ${
                     isSelected
                       ? 'bg-brand text-white shadow-sm'
                       : 'bg-white border border-neutral-200 text-neutral-700 hover:border-neutral-300 hover:bg-neutral-50'
@@ -242,9 +242,9 @@ export default function Vehicles() {
             <button
               type="button"
               onClick={() => setShowFilters(!showFilters)}
-              className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold border transition cursor-pointer ${
+              className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold border transition-all duration-200 cursor-pointer shrink-0 active:scale-95 ${
                 showFilters || activeFilters.length > 0
-                  ? 'border-brand bg-red-50 text-brand'
+                  ? 'border-brand bg-red-50 text-brand font-extrabold shadow-xs'
                   : 'border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50'
               }`}
             >
@@ -427,15 +427,21 @@ export default function Vehicles() {
               {[0, 1, 2, 3, 4, 5].map((i) => (
                 <div
                   key={i}
-                  className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm animate-pulse space-y-4"
+                  className="rounded-3xl border border-neutral-200/90 bg-white p-4 sm:p-5 shadow-sm space-y-4 overflow-hidden relative"
                 >
-                  <div className="aspect-[16/10] w-full rounded-xl bg-neutral-200" />
-                  <div className="h-4 w-3/4 rounded bg-neutral-200" />
-                  <div className="h-6 w-1/2 rounded bg-neutral-200" />
-                  <div className="grid grid-cols-3 gap-2 pt-2">
-                    <div className="h-4 rounded bg-neutral-100" />
-                    <div className="h-4 rounded bg-neutral-100" />
-                    <div className="h-4 rounded bg-neutral-100" />
+                  <div className="relative aspect-[16/10] w-full rounded-2xl bg-neutral-100 overflow-hidden">
+                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-neutral-200/50 to-transparent animate-shimmer" />
+                  </div>
+                  <div className="h-4 w-3/4 rounded-lg bg-neutral-100 relative overflow-hidden">
+                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-neutral-200/50 to-transparent animate-shimmer" />
+                  </div>
+                  <div className="h-6 w-1/2 rounded-lg bg-neutral-100 relative overflow-hidden">
+                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-neutral-200/50 to-transparent animate-shimmer" />
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 pt-2 border-t border-neutral-100">
+                    <div className="h-4 rounded bg-neutral-50" />
+                    <div className="h-4 rounded bg-neutral-50" />
+                    <div className="h-4 rounded bg-neutral-50" />
                   </div>
                 </div>
               ))}

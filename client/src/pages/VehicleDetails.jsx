@@ -180,23 +180,23 @@ export default function VehicleDetails() {
 
               {/* Photo Index Counter */}
               {images.length > 1 && (
-                <div className="absolute left-4 bottom-4 rounded-xl bg-black/60 px-3 py-1 text-xs font-bold text-white backdrop-blur-md">
+                <div className="absolute left-4 bottom-4 rounded-xl bg-black/70 px-3 py-1 text-xs font-bold text-white backdrop-blur-md shadow-md">
                   {imgIndex + 1} / {images.length}
                 </div>
               )}
             </div>
 
-            {/* Thumbnail Carousel */}
+            {/* Thumbnail Carousel (Smooth Swipeable on Mobile) */}
             {images.length > 1 && (
-              <div className="flex gap-3 overflow-x-auto pb-2">
+              <div className="flex gap-2.5 sm:gap-3 overflow-x-auto no-scrollbar pb-2">
                 {images.map((src, i) => (
                   <button
                     key={src + i}
                     onClick={() => setImgIndex(i)}
                     aria-label={`Show photo ${i + 1}`}
-                    className={`relative h-20 w-28 shrink-0 overflow-hidden rounded-2xl border-2 transition-all cursor-pointer ${
+                    className={`relative h-16 w-24 sm:h-20 sm:w-28 shrink-0 overflow-hidden rounded-2xl border-2 transition-all duration-200 cursor-pointer active:scale-95 ${
                       i === imgIndex
-                        ? 'border-brand ring-2 ring-red-100 shadow-md'
+                        ? 'border-brand ring-2 ring-red-200 shadow-md scale-[1.02]'
                         : 'border-transparent opacity-70 hover:opacity-100'
                     }`}
                   >
@@ -207,29 +207,29 @@ export default function VehicleDetails() {
             )}
 
             {/* Specifications Grid */}
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="rounded-3xl border border-neutral-200/90 bg-white p-5 sm:p-8 shadow-sm">
               <div className="flex items-center justify-between border-b border-neutral-100 pb-4 mb-6">
                 <div>
                   <p className="eyebrow">Technical Details</p>
-                  <h2 className="font-display text-2xl font-bold uppercase mt-1">Vehicle Specifications</h2>
+                  <h2 className="font-display text-xl sm:text-2xl font-bold uppercase mt-1">Vehicle Specifications</h2>
                 </div>
                 <span className="badge bg-neutral-100 text-neutral-700 font-bold uppercase text-xs">
                   {v.type}
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3">
                 {specs.map(({ label, value, icon: Icon }) => (
                   <div
                     key={label}
-                    className="flex items-start gap-3 rounded-2xl border border-neutral-100 bg-neutral-50/70 p-3.5 transition hover:border-neutral-200"
+                    className="flex items-start gap-2.5 sm:gap-3 rounded-2xl border border-neutral-100 bg-neutral-50/80 p-3 sm:p-3.5 transition-all duration-200 hover:border-neutral-200 hover:bg-neutral-50"
                   >
-                    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white text-brand shadow-xs border border-neutral-200/60">
-                      <Icon size={16} />
+                    <div className="grid h-8 w-8 sm:h-9 sm:w-9 shrink-0 place-items-center rounded-xl bg-white text-brand shadow-xs border border-neutral-200/60">
+                      <Icon size={15} />
                     </div>
-                    <div>
-                      <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">{label}</p>
-                      <p className="font-bold text-sm text-neutral-900 mt-0.5">{value}</p>
+                    <div className="min-w-0">
+                      <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-400 uppercase tracking-wider truncate">{label}</p>
+                      <p className="font-bold text-xs sm:text-sm text-neutral-900 mt-0.5 truncate">{value}</p>
                     </div>
                   </div>
                 ))}
@@ -396,6 +396,34 @@ export default function VehicleDetails() {
             </div>
           </section>
         )}
+      </div>
+
+      {/* Floating Action Strip for Mobile (Above Global Bottom Bar) */}
+      <div className="fixed bottom-14 inset-x-0 z-30 lg:hidden bg-white/95 backdrop-blur-xl border-t border-neutral-200 px-4 py-2.5 shadow-2xl flex items-center justify-between gap-3">
+        <div>
+          <span className="text-[10px] uppercase font-bold text-neutral-400 block leading-tight">Price</span>
+          <span className="font-display text-lg font-black text-brand leading-none">{formatLKR(v.price)}</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <a
+            href={BUSINESS.phones[0].href}
+            className="btn-primary !py-2 !px-3.5 text-xs font-bold shadow-md shadow-red-950/20 flex items-center gap-1.5 rounded-xl"
+          >
+            <Phone size={13} />
+            <span>Call</span>
+          </a>
+
+          <a
+            href={whatsappInquiryUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="btn !py-2 !px-3.5 text-xs font-bold bg-[#25D366] text-white hover:bg-[#20ba59] shadow-sm flex items-center gap-1.5 rounded-xl"
+          >
+            <MessageSquare size={13} />
+            <span>WhatsApp</span>
+          </a>
+        </div>
       </div>
 
       {/* Lightbox Fullscreen Modal */}
