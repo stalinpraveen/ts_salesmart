@@ -102,11 +102,17 @@ export default function Favorites() {
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm animate-pulse space-y-4"
+                className="rounded-3xl border border-neutral-200/90 bg-white p-4 sm:p-5 shadow-sm space-y-4 overflow-hidden relative"
               >
-                <div className="aspect-[16/10] w-full rounded-xl bg-neutral-200" />
-                <div className="h-4 w-3/4 rounded bg-neutral-200" />
-                <div className="h-6 w-1/2 rounded bg-neutral-200" />
+                <div className="relative aspect-[16/10] w-full rounded-2xl bg-neutral-100 overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-neutral-200/50 to-transparent animate-shimmer" />
+                </div>
+                <div className="h-4 w-3/4 rounded-lg bg-neutral-100 relative overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-neutral-200/50 to-transparent animate-shimmer" />
+                </div>
+                <div className="h-6 w-1/2 rounded-lg bg-neutral-100 relative overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-neutral-200/50 to-transparent animate-shimmer" />
+                </div>
               </div>
             ))}
           </div>

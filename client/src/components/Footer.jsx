@@ -287,7 +287,7 @@ export default function Footer() {
       </div>
 
       {/* 3. Bottom Legal & Copyright Bar with Back to Top */}
-      <div className="border-t border-white/10 py-6 bg-black/80 text-xs text-gray-500">
+      <div className="border-t border-white/10 pt-6 pb-16 sm:pb-6 bg-black/80 text-xs text-gray-500">
         <div className="container-page flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="space-y-1">
             <p>© {YEAR} <strong>TS SALES MART</strong>. All rights reserved. Drive Your Dreams.</p>
