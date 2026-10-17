@@ -34,7 +34,15 @@ export function createApp() {
       origin: (origin, callback) => {
         // Allow requests with no origin (mobile apps, curl, server-to-server)
         if (!origin) return callback(null, true)
-        if (env.allowedOrigins.includes(origin)) return callback(null, true)
+        const normalized = origin.replace(/\/$/, '')
+        if (
+          env.allowedOrigins.some((o) => o.replace(/\/$/, '') === normalized) ||
+          normalized.endsWith('.vercel.app') ||
+          normalized.includes('localhost') ||
+          normalized.includes('127.0.0.1')
+        ) {
+          return callback(null, true)
+        }
         callback(new ApiError(403, `CORS blocked: Origin ${origin} is not authorized`))
       },
       credentials: true,
