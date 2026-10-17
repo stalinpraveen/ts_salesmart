@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "TS SALES MART API",
   "scripts": {
-    "dev": "node --watch src/server.js",
+    "dev": "node --watch-path=src src/server.js",
     "start": "node src/server.js",
     "seed": "node src/seed.js",
+    "clear:vehicles": "node src/clearVehicles.js",
     "test": "node --test \"tests/*.test.js\""
   },
   "keywords": [],

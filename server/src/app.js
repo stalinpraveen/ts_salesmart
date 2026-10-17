@@ -68,6 +68,7 @@ export function createApp() {
     })
   )
 
+  app.get('/', (req, res) => res.json({ success: true, message: 'TS SALES MART API is running', health: '/api/health', vehicles: '/api/vehicles' }))
   app.get('/api/health', (req, res) => res.json({ success: true, status: 'ok', timestamp: new Date().toISOString() }))
   app.use('/api/vehicles', vehicleRoutes)
   app.use('/api/auth', authRouter)

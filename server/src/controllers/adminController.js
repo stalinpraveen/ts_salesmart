@@ -45,6 +45,17 @@ export async function archiveVehicle(req, res) {
   res.json({ success: true, data: vehicle })
 }
 
+// Permanently delete a vehicle and its Cloudinary images
+export async function deleteVehicle(req, res) {
+  validId(req.params.id)
+  const vehicle = await Vehicle.findByIdAndDelete(req.params.id)
+  if (!vehicle) throw new ApiError(404, 'Vehicle not found')
+  if (vehicle.images?.length) {
+    await deleteImages(vehicle.images.map((i) => i.publicId).filter(Boolean))
+  }
+  res.json({ success: true, message: 'Vehicle deleted permanently' })
+}
+
 export async function setVehicleStatus(req, res) {
   validId(req.params.id)
   const { status } = parse(statusSchema, req.body)
